@@ -156,8 +156,7 @@ public class BankController {
             accountService.checkAmountWithComission(bank, amountLimit);
             CreditAccount credit = creationService.createCreditAccount(user, currency, amountLimit, durability, mounthPay);
             int code = (int) (Math.random() * 10000);
-            code = 1111;
-//            SMSSender.sendSMScode(user.getPhone(), code);
+            SMSSender.sendSMScode(user.getPhone(), code);
             CreditHolder holder = CreditHolder.getInstance();
             holder.put(String.valueOf(code) + String.valueOf(user.getId()), credit);
         } catch (NumberFormatException e) {
@@ -166,8 +165,8 @@ public class BankController {
         } catch (NotEnoughMoneyExeption e) {
             errorService.putErrorMsg(user.getId(), "Кредитування в цій валюті тимчасово неможливе");
             response.setStatus(405);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
 

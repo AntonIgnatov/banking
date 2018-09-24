@@ -104,7 +104,6 @@ public class TransactionService {
         while (code < 1000) {
             code = (int) (Math.random() * 10000);
         }
-        code = 1111;
         ConfirmSMSTransaction sms = new ConfirmSMSTransaction(code);
         sms.setTransaction(tr);
         boolean check = true;
