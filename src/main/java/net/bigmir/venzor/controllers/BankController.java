@@ -353,7 +353,6 @@ public class BankController {
             T account = accountService.getAccount(tr.getAccountFrom());
             UserChecker.checkUserBuAccount(account, user);
             transactionService.confirmTransaction(tr);
-            transactionService.deleteSMS(code);
         } catch (WrongCodeExeption | WrongAccountExeption e) {
             errorService.putErrorMsg(user.getId(), "Невірний код");
             response.setStatus(405);
